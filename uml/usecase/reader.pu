@@ -1,0 +1,26 @@
+@startuml
+title Reader Usecases
+
+actor Reader as r
+
+rectangle {
+   usecase "本の一覧の取得" as u1
+   usecase "任意のプロパティの一覧の取得" as u2
+   usecase "任意のプロパティの組み合わせ\nによる本の一覧の検索" as u3
+   usecase "指定した本のPDFダウンロード" as u4
+   usecase "指定した本のプロパティの取得" as u5
+   usecase "指定した本の表紙画像の取得" as u6
+   usecase "指定した本の情報を取得" as u7
+
+   r --> u1
+   r --> u2
+   r --> u3
+   u3 --|> u1
+   r --> u4
+   u4 --|> u7
+   r --> u5
+   u5 --|> u7
+   r --> u6
+   u6 --|> u7
+}
+@enduml

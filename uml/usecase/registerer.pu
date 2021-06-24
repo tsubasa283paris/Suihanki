@@ -1,0 +1,22 @@
+@startuml
+title Registerer Usecases
+
+actor Registerer as r
+
+rectangle {
+   usecase "スキャンデータのアップロード" as u1
+   usecase "指定した本のプロパティ登録" as u2
+   usecase "指定した本のプロパティ設定" as u3
+   usecase "プロパティ未登録の本の一覧の取得" as u4
+   usecase "プロパティを登録しながら\nスキャンデータをアップロード" as u5
+
+   r --> u1
+   r --> u2
+   u2 --|> u3
+   r --> u3
+   r --> u4
+   r --> u5
+   u5 --|> u1
+   u5 --|> u2
+}
+@enduml
