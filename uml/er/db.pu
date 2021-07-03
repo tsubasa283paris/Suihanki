@@ -8,13 +8,23 @@ entity "book" as b {
     --
     book_name
     --
-    author
-    --
     publisher
     --
     publish_date
     --
     note
+}
+entity "author_books" as ab {
+    author_books_id
+    --
+    author_id
+    --
+    book_id
+}
+entity "author" as a {
+    author_id
+    --
+    author_name
 }
 entity "page" as p {
     page_id
@@ -38,6 +48,8 @@ entity "tag" as t {
     tag_name
 }
 
+b ||--|{ ab
+ab }o--|| a
 b ||--|{ p
 b ||--o{ bt
 bt }o--|| t
