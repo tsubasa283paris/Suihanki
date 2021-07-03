@@ -1,0 +1,45 @@
+@startuml
+
+title SuihankiDB ER
+skinparam linetype ortho
+
+entity "book" as b {
+    id
+    --
+    book_name
+    --
+    author
+    --
+    publisher
+    --
+    publish_date
+    --
+    note
+}
+entity "page" as p {
+    id
+    --
+    book_id
+    --
+    page_number
+    --
+    image_path
+}
+entity "book_tags" as bt {
+    id
+    --
+    book_id
+    --
+    tag_id
+}
+entity "tag" as t {
+    id
+    --
+    tag_name
+}
+
+b ||--|{ p
+b ||--o{ bt
+bt }o--|| t
+
+@enduml
