@@ -4,7 +4,7 @@ title SuihankiDB ER
 skinparam linetype ortho
 
 entity "book" as b {
-    id
+    book_id
     --
     book_name
     --
@@ -17,7 +17,7 @@ entity "book" as b {
     note
 }
 entity "page" as p {
-    id
+    page_id
     --
     book_id
     --
@@ -26,14 +26,14 @@ entity "page" as p {
     image_path
 }
 entity "book_tags" as bt {
-    id
+    book_tags_id
     --
     book_id
     --
     tag_id
 }
 entity "tag" as t {
-    id
+    tag_id
     --
     tag_name
 }
