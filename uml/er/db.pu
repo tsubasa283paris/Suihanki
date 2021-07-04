@@ -29,13 +29,13 @@ entity "circle" as c {
     --
     book_id
 }
-entity "mylist" as m {
-    mylist_id
-    --
-    mylist_name
-    --
-    user_id
-}
+' entity "mylist" as m {
+'     mylist_id
+'     --
+'     mylist_name
+'     --
+'     user_id
+' }
 entity "page" as p {
     page_id
     --
@@ -55,13 +55,13 @@ entity "tag_category" as tc {
     --
     tag_category_name
 }
-entity "user" as u {
-    user_id
-    --
-    user_name
-    --
-    password
-}
+' entity "user" as u {
+'     user_id
+'     --
+'     user_name
+'     --
+'     password
+' }
 
 ' intermediate entities
 entity "author_books" as ab {
@@ -78,13 +78,13 @@ entity "author_circles" as ac {
     --
     circle_id
 }
-entity "book_mylists" as bm {
-    book_mylists_id
-    --
-    book_id
-    --
-    mylist_id
-}
+' entity "book_mylists" as bm {
+'     book_mylists_id
+'     --
+'     book_id
+'     --
+'     mylist_id
+' }
 entity "book_tags" as bt {
     book_tags_id
     --
@@ -107,7 +107,7 @@ a ||--|{ ac
 ' book contains
 b ||--|{ p
 b ||--|{ ab
-b ||--|{ bm
+' b ||--|{ bm
 b ||--o{ bt
 
 ' circle contains
@@ -115,7 +115,7 @@ c ||--|{ b
 c ||--|{ ac
 
 ' mylist contains
-m ||--|{ bm
+' m ||--|{ bm
 
 ' tag contains
 t ||--o{ bt
@@ -125,6 +125,6 @@ t ||--o{ ttc
 tc ||--o{ ttc
 
 ' user contains
-u ||--o{ m
+' u ||--o{ m
 
 @enduml
