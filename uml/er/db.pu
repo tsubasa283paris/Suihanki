@@ -1,0 +1,130 @@
+@startuml
+
+title SuihankiDB ER
+skinparam linetype ortho
+
+' single entities
+entity "author" as a {
+    author_id
+    --
+    author_name
+}
+entity "book" as b {
+    book_id
+    --
+    book_name
+    --
+    main_author_id
+    --
+    circle_id
+    --
+    publish_date
+    --
+    note
+}
+entity "circle" as c {
+    circle_id
+    --
+    circle_name
+    --
+    book_id
+}
+' entity "mylist" as m {
+'     mylist_id
+'     --
+'     mylist_name
+'     --
+'     user_id
+' }
+entity "page" as p {
+    page_id
+    --
+    book_id
+    --
+    page_number
+    --
+    image_path
+}
+entity "tag" as t {
+    tag_id
+    --
+    tag_name
+}
+entity "tag_category" as tc {
+    tag_category_id
+    --
+    tag_category_name
+}
+' entity "user" as u {
+'     user_id
+'     --
+'     user_name
+'     --
+'     password
+' }
+
+' intermediate entities
+entity "author_books" as ab {
+    author_books_id
+    --
+    author_id
+    --
+    book_id
+}
+entity "author_circles" as ac {
+    author_circles_id
+    --
+    author_id
+    --
+    circle_id
+}
+' entity "book_mylists" as bm {
+'     book_mylists_id
+'     --
+'     book_id
+'     --
+'     mylist_id
+' }
+entity "book_tags" as bt {
+    book_tags_id
+    --
+    book_id
+    --
+    tag_id
+}
+entity "tag_tag_categories" as ttc {
+    tag_tag_categories_id
+    --
+    tag_id
+    --
+    tag_category_id
+}
+
+' author contains
+a ||--|{ ab
+a ||--|{ ac
+
+' book contains
+b ||--|{ p
+b ||--|{ ab
+' b ||--|{ bm
+b ||--o{ bt
+
+' circle contains
+c ||--|{ b
+c ||--|{ ac
+
+' mylist contains
+' m ||--|{ bm
+
+' tag contains
+t ||--o{ bt
+t ||--o{ ttc
+
+' tag_category contains
+tc ||--o{ ttc
+
+' user contains
+' u ||--o{ m
+
+@enduml
