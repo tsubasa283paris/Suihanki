@@ -3,28 +3,31 @@
 title SuihankiDB ER
 skinparam linetype ortho
 
+' single entities
+entity "author" as a {
+    author_id
+    --
+    author_name
+}
 entity "book" as b {
     book_id
     --
     book_name
     --
-    publisher
+    main_author_id
+    --
+    circle_id
     --
     publish_date
     --
     note
 }
-entity "author_books" as ab {
-    author_books_id
+entity "circle" as c {
+    circle_id
     --
-    author_id
+    circle_name
     --
     book_id
-}
-entity "author" as a {
-    author_id
-    --
-    author_name
 }
 entity "page" as p {
     page_id
@@ -35,6 +38,27 @@ entity "page" as p {
     --
     image_path
 }
+entity "tag" as t {
+    tag_id
+    --
+    tag_name
+}
+
+' intermediate entities
+entity "author_books" as ab {
+    author_books_id
+    --
+    author_id
+    --
+    book_id
+}
+entity "author_circles" as ac {
+    author_circles_id
+    --
+    author_id
+    --
+    circle_id
+}
 entity "book_tags" as bt {
     book_tags_id
     --
@@ -42,16 +66,21 @@ entity "book_tags" as bt {
     --
     tag_id
 }
-entity "tag" as t {
-    tag_id
-    --
-    tag_name
-}
 
+' author contains
+a ||--|{ ab
+a ||--|{ ac
+
+' book contains
 b ||--|{ ab
-ab }o--|| a
 b ||--|{ p
 b ||--o{ bt
-bt }o--|| t
+
+' circle contains
+c ||--|{ b
+c ||--|{ ac
+
+' tag contains
+t ||--o{ bt
 
 @enduml
